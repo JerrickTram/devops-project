@@ -2,6 +2,5 @@
 
 * Infrastructure Provisioning: Terraform
 * Configuration Management: Ansible
-* Cloud Server: GCP E2 Micro
-* Lab Environment: Vagrant, VirtualBox
+* Cloud Server: GCP
 * Programming Language: Python
