@@ -6,10 +6,11 @@ provider "google" {
 }
 
 resource "google_compute_instance" "test-node-" {
-    count           = "${var.node_count}"
-    name            = "test-node-${count.index}"
-    machine_type    = "${var.machine}"
-    zone            = "${var.zones}"
+    count                       = "${var.node_count}"
+    name                        = "test-node-${count.index}"
+    machine_type                = "${var.machine}"
+    zone                        = "${var.zones}"
+    allow_stopping_for_update   = true
 
     boot_disk {
         initialize_params {
