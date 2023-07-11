@@ -1,6 +1,9 @@
 variable "project_id" { }
 
-variable "credentials" { }
+variable "credentials" { 
+    type = string
+    sensitive = true
+}
 
 variable "regions" {
   default = "us-east5"
