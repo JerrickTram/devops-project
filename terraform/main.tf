@@ -4,3 +4,23 @@ provider "google" {
     region      = var.regions
     zone        = var.zones
 }
+
+resource "google_compute_instance" "test-node-" {
+    count           = "${var.node_count}"
+    name            = "test-node-${count.index}"
+    machine_type    = "${var.machine}"
+    zone            = "${var.zones}"
+
+    boot_disk {
+        initialize_params {
+            image   = "${var.image}"
+        }
+    }
+
+    network_interface {
+        network = "default"
+        access_config {
+            // Ephemeral IP
+        }
+    }
+}
