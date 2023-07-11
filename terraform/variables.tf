@@ -2,10 +2,10 @@ variable "project_id" { }
 
 variable "credentials" { }
 
-variable "region" {
+variable "regions" {
     default = "us-east5"
 }
 
-variable "zone" {
+variable "zones" {
     default = "us-east5-a"
 }

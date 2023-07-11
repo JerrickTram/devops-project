@@ -1,6 +1,6 @@
 provider "google" {
     project     = var.project_id
-    credentials = file("google_cloud_cred.json")
-    region      = var.region
-    zone        = var.zone
+    credentials = file(var.project_id)
+    region      = var.regions
+    zone        = var.zones
 }
