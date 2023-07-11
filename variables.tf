@@ -3,21 +3,21 @@ variable "project_id" { }
 variable "credentials" { }
 
 variable "regions" {
-    default = "us-east5"
+  default = "us-east5"
 }
 
 variable "zones" {
-    default = "us-east5-a"
+  default = "us-east5-a"
 }
 
 variable "machine" {
-    default = "e2-small"
+  default = "e2-small"
 }
 
 variable "node_count" {
-    default = "3"
+  default = "3"
 }
 
 variable "image" {
-    default = "debian-cloud/debian-11"
+  default = "debian-cloud/debian-11"
 }
