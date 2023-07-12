@@ -19,9 +19,23 @@ resource "google_compute_instance" "test-node-" {
   }
 
   network_interface {
-    network = "default"
+    network = google_compute_network.terraform_network.self_link
+    subnetwork = google_compute_subnetwork.terraform_subnet.self_link
     access_config {
       // Ephemeral IP
     }
   }
+}
+
+resource "google_compute_network" "terraform_network" {
+    name                        = "terraform-network"
+    auto_create_subnetworks     = false
+
+}
+
+resource "google_compute_subnetwork" "terraform_subnet" {
+    name                        = "terraform-subnetwork"
+    ip_cidr_range               = "10.202.0.0/20"
+    region                      = var.regions
+    network                     = google_compute_network.terraform_network.id
 }
