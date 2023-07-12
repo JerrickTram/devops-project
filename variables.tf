@@ -5,16 +5,10 @@ variable "credentials" {
     sensitive = true
 }
 
-variable "regions" {
-  default = "us-east5"
-}
-
-variable "zones" {
-  default = "us-east5-a"
-}
-
-variable "machine" {
-  default = "e2-small"
+variable "vm_params" {
+    type = tuple({string, string, string, bool})
+    description = "vm parameters"
+    default = ["e2-small", "us-east5", "us-east5-a", true]
 }
 
 variable "node_count" {
@@ -22,5 +16,5 @@ variable "node_count" {
 }
 
 variable "image" {
-  default = "debian-cloud/debian-11"
+  default = "cos-cloud/cos-stable"
 }
