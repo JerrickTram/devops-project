@@ -16,7 +16,7 @@ variable "vm_params" {
     description = "vm parameters"
     default     = {
         name                        = "terraform-instance"
-        machine_type                = "e2-small"
+        machine_type                = "e2-micro"
         region                      = "us-east5"
         zone                        = "us-east5-a"
         allow_stopping_for_update   = true

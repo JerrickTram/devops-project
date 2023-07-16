@@ -12,6 +12,8 @@ resource "google_compute_instance" "test-node-" {
   zone                      = var.vm_params.zone
   allow_stopping_for_update = var.vm_params.allow_stopping_for_update
 
+  tags = ["http-server", "https-server"]
+  
   boot_disk {
     initialize_params {
       image = var.image
