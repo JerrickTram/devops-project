@@ -4,7 +4,8 @@
   become: true
   vars:
     db_user: myuser
-    postgresql_data_dir: "/var/lib/postgresql/15/main"
+    postgresql_version: "15"
+    postgresql_data_dir: "/var/lib/postgresql/{{ postgresql_version }}/main"
 
   tasks:
     - name: Utility present
