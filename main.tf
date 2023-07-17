@@ -41,3 +41,18 @@ resource "google_compute_subnetwork" "terraform_subnet" {
     region                      = var.vm_params.region
     network                     = google_compute_network.terraform_network.id
 }
+
+resource "google_compute_firewall" "rules" {
+  project     = var.project_id
+  name        = "tcp-forwarding"
+  network     = "terraform-network"
+  description = "Creates firewall rule targeting tagged instances"
+
+  allow {
+    protocol  = "tcp"
+    ports     = ["22", "3389"]
+  }
+
+  source_tags = ["foo"]
+  target_tags = ["web"]
+}
