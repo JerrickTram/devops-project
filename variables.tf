@@ -33,5 +33,5 @@ variable "node_count" {
 }
 
 variable "image" {
-  default = "cos-cloud/cos-stable"
+  default = "debian-cloud/debian-11"
 }
