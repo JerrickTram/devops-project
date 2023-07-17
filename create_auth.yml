@@ -1,0 +1,31 @@
+---
+- name: PostgreSQL Authentication Methods
+  hosts: localhost
+  become: true
+  vars:
+    db_user: myuser
+    postgresql_data_dir: "/var/lib/postgresql/15/main"
+
+  tasks:
+    - name: Utility present
+      ansible.builtin.package:
+        name: python3-psycopg2
+        state: present
+
+    - name: Allow md5 connection for db user/role
+      community.postgresql.postgresql_pg_hba:
+        dest: "{{ postgresql_data_dir }}/pg_hba.conf"
+        setype: host
+        databases: all
+        method: md5
+        users: "{{ db_user }}"
+        create: true
+      become: true
+      become_user: postgres
+      notify: Restart service
+
+  handlers:
+    - name: Restart service
+      ansible.builtin.service:
+        name: postgresql
+        state: restarted
