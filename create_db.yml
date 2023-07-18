@@ -32,5 +32,4 @@
         - fat NUMERIC NOT NULL
         owner: postgres
       become: true
-      become_user: postgres
-        
+      become_user: postgres        

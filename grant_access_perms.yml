@@ -5,6 +5,7 @@
   vars:
     db_user: myuser
     db_name: initdb
+    tb_name: mytable
 
   tasks:
     - name: Utility present
@@ -16,8 +17,20 @@
       community.postgresql.postgresql_privs:
         type: database
         database: "{{ db_name }}"
-        roles: "{{ db_user }}"
-        privs: all
-        grant_option: false
+        role: "{{ db_user }}"
+        priv: CONNECT
+        grant_option: true
+      become: true
+      become_user: postgres
+
+    - name: Grant db user read access to tb
+      community.postgresql.postgresql_privs:
+        type: table
+        database: "{{ db_name }}"
+        objs: "{{ tb_name }}"
+        schema: public
+        role: "{{ db_user }}"
+        priv: SELECT
+        grant_option: true
       become: true
       become_user: postgres
