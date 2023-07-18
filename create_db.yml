@@ -4,6 +4,7 @@
   become: true
   vars:
     db_name: initdb
+    tb_name: mytable
   tasks:
     - name: Utility present
       ansible.builtin.package:
@@ -16,3 +17,20 @@
         name: "{{ db_name }}"
       become: true
       become_user: postgres
+
+    - name: Create table
+      community.postgresql.postgresql_table:
+        state: present
+        db: "{{ db_name }}"
+        name: "{{ tb_name }}"
+        columns:
+        - food_id BIGSERIAL PRIMARY KEY
+        - food_name VARCHAR(250) NOT NULL
+        - calories NUMERIC NOT NULL
+        - protein NUMERIC NOT NULL
+        - carbohydrates NUMERIC NOT NULL
+        - fat NUMERIC NOT NULL
+        owner: postgres
+      become: true
+      become_user: postgres
+        
